@@ -98,8 +98,13 @@ export function Nav() {
           <a href="/#resultados" className="hover:text-body transition-colors duration-200">Resultados</a>
         </div>
 
-        <div className="flex items-center gap-2">
-          {/* Theme toggle removed */}
+        <div className="flex items-center gap-3">
+          <a
+            href="/login"
+            className="hidden sm:flex items-center gap-1.5 border border-line text-body px-4 py-2 rounded-full text-sm font-medium hover:border-primary hover:text-primary transition-all duration-200"
+          >
+            Acessar
+          </a>
           <a
             href="#cta"
             className="group hidden sm:flex items-center gap-2 bg-primary text-page px-5 py-2.5 rounded-full text-sm font-semibold hover:brightness-110 transition-all duration-200"

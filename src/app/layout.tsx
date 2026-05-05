@@ -6,7 +6,7 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const jakarta = Plus_Jakarta_Sans({ variable: "--font-display", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://eximiaacademy.com"),
+  metadataBase: new URL("https://eximiaacademy.com.br"),
   title: {
     default: "eximIA Academy — Educação Corporativa com IA Socrática",
     template: "%s — eximIA Academy",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://eximiaacademy.com",
+    url: "https://eximiaacademy.com.br",
     siteName: "eximIA Academy",
     title: "eximIA Academy — Educação Corporativa com IA Socrática",
     description: "A única plataforma onde a IA faz as perguntas e o colaborador constrói o conhecimento. Retenção real, mensurável.",
@@ -53,8 +53,8 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://eximiaacademy.com",
-    languages: { "pt-BR": "https://eximiaacademy.com" },
+    canonical: "https://eximiaacademy.com.br",
+    languages: { "pt-BR": "https://eximiaacademy.com.br" },
   },
   manifest: "/manifest.json",
   icons: {
@@ -88,8 +88,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "EducationalOrganization",
               name: "eximIA Academy",
-              url: "https://eximiaacademy.com",
-              logo: "https://eximiaacademy.com/logo-horizontal.svg",
+              url: "https://eximiaacademy.com.br",
+              logo: "https://eximiaacademy.com.br/logo-horizontal.svg",
               description: "Plataforma de educação corporativa com IA Socrática. Método que transforma treinamento em retenção real.",
               foundingDate: "2026",
               areaServed: { "@type": "Country", name: "Brazil" },
@@ -128,7 +128,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               applicationCategory: "EducationalApplication",
               operatingSystem: "Web",
               description: "Plataforma LXP com IA Socrática para universidades corporativas",
-              url: "https://eximiaacademy.com",
+              url: "https://eximiaacademy.com.br",
               offers: {
                 "@type": "Offer",
                 price: "0",

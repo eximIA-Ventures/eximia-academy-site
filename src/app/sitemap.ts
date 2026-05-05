@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { modules } from "@/lib/modules";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://eximiaacademy.com";
+  const base = "https://eximiaacademy.com.br";
 
   return [
     { url: base, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },

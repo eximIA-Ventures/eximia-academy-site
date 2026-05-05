@@ -9,4 +9,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://eximiaacademy.com/sitemap.xml
+Sitemap: https://eximiaacademy.com.br/sitemap.xml

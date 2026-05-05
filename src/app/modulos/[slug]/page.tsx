@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title,
       description,
-      url: `https://eximiaacademy.com/modulos/${slug}`,
+      url: `https://eximiaacademy.com.br/modulos/${slug}`,
       type: "website",
     },
     twitter: {
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description,
     },
     alternates: {
-      canonical: `https://eximiaacademy.com/modulos/${slug}`,
+      canonical: `https://eximiaacademy.com.br/modulos/${slug}`,
     },
   };
 }
