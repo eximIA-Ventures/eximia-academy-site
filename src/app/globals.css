@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* ============================================================
+   eximIA Academy — Light Mode Only · Cerrado (Laranja)
+   ============================================================ */
+
+@theme {
+  --color-cerrado:   oklch(0.72 0.18 45);
+  --color-pampa:     oklch(0.55 0.14 150);
+  --color-sertao:    oklch(0.65 0.16 30);
+  --color-pantanal:  oklch(0.45 0.12 220);
+  --color-varzea:    oklch(0.78 0.10 168);
+  --color-caatinga:  oklch(0.82 0.08 80);
+
+  --color-neutral-50:  oklch(0.98 0 0);
+  --color-neutral-100: oklch(0.96 0 0);
+  --color-neutral-200: oklch(0.93 0 0);
+  --color-neutral-300: oklch(0.87 0 0);
+  --color-neutral-400: oklch(0.80 0 0);
+  --color-neutral-500: oklch(0.72 0 0);
+  --color-neutral-600: oklch(0.58 0 0);
+  --color-neutral-700: oklch(0.44 0 0);
+  --color-neutral-800: oklch(0.31 0 0);
+  --color-neutral-900: oklch(0.24 0 0);
+  --color-neutral-950: oklch(0.17 0 0);
+
+  --color-success: oklch(0.62 0.18 148);
+  --color-warning: oklch(0.80 0.16 80);
+  --color-error:   oklch(0.58 0.22 25);
+  --color-info:    oklch(0.62 0.16 240);
+
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-display), system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --bg:          0.97 0.005 60;
+    --fg:          0.15 0.006 30;
+    --card-bg:     1 0 0;
+    --muted-fg:    0.50 0 0;
+    --subtle-fg:   0.65 0 0;
+    --border-raw:  0.87 0.01 50;
+    --primary-raw: 0.64 0.17 42;
+    --primary-fg:  0.98 0 0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: #F7F4EF;
+    color: #1A1714;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    line-height: 1.15;
+    font-weight: 600;
+  }
+
+  ::selection { background: oklch(var(--primary-raw) / 0.2); }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: oklch(var(--border-raw) / 0.5); border-radius: 9999px; }
+}
+
+@layer utilities {
+  .bg-page { background-color: oklch(var(--bg)); }
+  .text-page { color: oklch(var(--bg)); }
+  .bg-card { background-color: oklch(var(--card-bg)); }
+  .text-body { color: oklch(var(--fg)); }
+  .text-muted { color: oklch(var(--muted-fg)); }
+  .text-subtle { color: oklch(var(--subtle-fg)); }
+  .border-line { border-color: oklch(var(--border-raw) / 0.15); }
+
+  .glass {
+    background: oklch(var(--card-bg) / 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid oklch(var(--border-raw) / 0.3);
+  }
+
+  .text-primary { color: oklch(var(--primary-raw)); }
+  .bg-primary { background-color: oklch(var(--primary-raw)); }
+  .border-primary { border-color: oklch(var(--primary-raw)); }
+  .bg-primary-subtle { background-color: oklch(var(--primary-raw) / 0.1); }
+  .border-primary-subtle { border-color: oklch(var(--primary-raw) / 0.2); }
+  .text-primary-subtle { color: oklch(var(--primary-raw) / 0.2); }
+  .shadow-primary { box-shadow: 0 4px 20px oklch(var(--primary-raw) / 0.15); }
+
+  .text-gradient-cerrado { color: oklch(var(--primary-raw)); }
+
+  .surface-card {
+    background-color: oklch(var(--card-bg));
+    border: 1px solid oklch(var(--border-raw) / 0.2);
+  }
+
+  .interactive { transition: all 150ms ease-out; }
+  .interactive:hover { transform: translateY(-1px); }
+
+  .logo-company {
+    filter: grayscale(1);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+  }
+  .logo-company:hover {
+    filter: grayscale(0);
+    opacity: 0.8;
+  }
+}
