@@ -1,30 +1,36 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Search, ArrowRight, Building2, HelpCircle } from "lucide-react";
+import { Search, ArrowRight, LogIn } from "lucide-react";
 import Link from "next/link";
 
 const tenants = [
-  { slug: "cory", name: "Cory Alimentos", city: "Ribeirão Preto, SP" },
-  { slug: "harven", name: "Harven Agribusiness School", city: "Ribeirão Preto, SP" },
-  { slug: "argos", name: "Argos Consultoria", city: "Ribeirão Preto, SP" },
+  { slug: "cory", name: "Cory Alimentos" },
+  { slug: "argos", name: "Argos Consultoria" },
 ];
 
 export default function LoginPage() {
   const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState<typeof tenants[0] | null>(null);
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(() => {
-    if (!query.trim()) return tenants;
+    if (!query.trim()) return [];
     const q = query.toLowerCase();
     return tenants.filter(t => t.name.toLowerCase().includes(q) || t.slug.includes(q));
   }, [query]);
 
-  const handleGo = () => {
-    if (selected) {
-      window.location.href = `https://${selected.slug}.eximiaacademy.com.br`;
-    }
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
+  const handleSelect = (tenant: typeof tenants[0]) => {
+    window.location.href = `https://${tenant.slug}.eximiaacademy.com.br`;
   };
 
   return (
@@ -33,119 +39,109 @@ export default function LoginPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-md"
+        className="w-full max-w-sm"
       >
         {/* Logo */}
         <div className="text-center mb-10">
           <Link href="/">
-            <img src="/logo-horizontal.svg" alt="eximIA" className="h-6 mx-auto mb-6" />
+            <img src="/logo-horizontal.svg" alt="eximIA" className="h-6 mx-auto mb-8" />
           </Link>
-          <h1 className="text-2xl font-bold mb-2" style={{ fontFamily: "var(--font-display)", color: "#1A1714" }}>
-            Acesse sua Academy
+          <div className="w-12 h-12 rounded-2xl mx-auto mb-5 flex items-center justify-center" style={{ background: "oklch(0.64 0.17 42 / 0.1)" }}>
+            <LogIn className="w-6 h-6" style={{ color: "oklch(0.64 0.17 42)" }} />
+          </div>
+          <h1 className="text-xl font-bold mb-1" style={{ fontFamily: "var(--font-display)", color: "#1A1714" }}>
+            Acessar plataforma
           </h1>
           <p className="text-sm" style={{ color: "#8A8378" }}>
-            Selecione sua organização para acessar a plataforma
+            Digite o nome da sua empresa
           </p>
         </div>
 
-        {/* Search */}
-        <div className="relative mb-4">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: "#8A8378" }} />
+        {/* Search input with dropdown */}
+        <div ref={ref} className="relative mb-6">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5" style={{ color: "#B8B0A5" }} />
           <input
             type="text"
             value={query}
-            onChange={e => { setQuery(e.target.value); setSelected(null); }}
-            placeholder="Digite o nome da sua empresa..."
+            onChange={e => { setQuery(e.target.value); setOpen(true); }}
+            onFocus={() => { if (query.trim()) setOpen(true); }}
+            placeholder="Nome da sua empresa"
             autoFocus
-            className="w-full pl-12 pr-4 py-4 rounded-2xl border text-base outline-none transition-colors"
-            style={{
-              background: "white",
-              borderColor: selected ? "oklch(0.64 0.17 42)" : "#DDD6CC",
-              color: "#1A1714",
-            }}
-            onFocus={e => e.target.style.borderColor = "oklch(0.64 0.17 42)"}
-            onBlur={e => { if (!selected) e.target.style.borderColor = "#DDD6CC"; }}
+            className="w-full pl-11 pr-4 py-3.5 rounded-xl border text-sm outline-none transition-all"
+            style={{ background: "white", borderColor: open && filtered.length > 0 ? "oklch(0.64 0.17 42)" : "#DDD6CC", color: "#1A1714" }}
           />
-        </div>
 
-        {/* Tenant list */}
-        <div className="rounded-2xl border overflow-hidden mb-4" style={{ background: "white", borderColor: "#DDD6CC" }}>
-          {filtered.length > 0 ? (
-            filtered.map((tenant) => (
-              <button
-                key={tenant.slug}
-                onClick={() => { setSelected(tenant); setQuery(tenant.name); }}
-                className="w-full flex items-center gap-4 px-5 py-4 text-left transition-colors border-b last:border-b-0"
-                style={{
-                  borderColor: "#F2EDE6",
-                  background: selected?.slug === tenant.slug ? "oklch(0.64 0.17 42 / 0.06)" : "transparent",
-                }}
-                onMouseEnter={e => { if (selected?.slug !== tenant.slug) e.currentTarget.style.background = "#F9F6F2"; }}
-                onMouseLeave={e => { if (selected?.slug !== tenant.slug) e.currentTarget.style.background = "transparent"; }}
-              >
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                  style={{
-                    background: selected?.slug === tenant.slug ? "oklch(0.64 0.17 42)" : "#F2EDE6",
-                    color: selected?.slug === tenant.slug ? "white" : "#8A8378",
-                  }}
-                >
-                  <Building2 className="w-5 h-5" />
+          {/* Dropdown */}
+          {open && query.trim() && (
+            <div className="absolute top-full left-0 right-0 mt-2 rounded-xl border overflow-hidden shadow-lg z-10" style={{ background: "white", borderColor: "#EDE8E0" }}>
+              {filtered.length > 0 ? (
+                filtered.map((tenant) => (
+                  <button
+                    key={tenant.slug}
+                    onClick={() => handleSelect(tenant)}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors"
+                    onMouseEnter={e => e.currentTarget.style.background = "#F9F6F2"}
+                    onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                  >
+                    <p className="text-sm font-medium" style={{ color: "#1A1714" }}>{tenant.name}</p>
+                    <ArrowRight className="w-3.5 h-3.5 ml-auto" style={{ color: "#B8B0A5" }} />
+                  </button>
+                ))
+              ) : (
+                <div className="px-4 py-4 text-center">
+                  <p className="text-xs" style={{ color: "#8A8378" }}>Nenhum resultado para "{query}"</p>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold" style={{ color: "#1A1714" }}>{tenant.name}</p>
-                  <p className="text-xs" style={{ color: "#8A8378" }}>{tenant.slug}.eximiaacademy.com.br</p>
-                </div>
-                {selected?.slug === tenant.slug && (
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "oklch(0.64 0.17 42)" }}>
-                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                  </div>
-                )}
-              </button>
-            ))
-          ) : (
-            <div className="px-5 py-8 text-center">
-              <HelpCircle className="w-8 h-8 mx-auto mb-3" style={{ color: "#DDD6CC" }} />
-              <p className="text-sm" style={{ color: "#8A8378" }}>Nenhuma organização encontrada</p>
-              <p className="text-xs mt-1" style={{ color: "#B8B0A5" }}>Verifique o nome ou entre em contato</p>
+              )}
             </div>
           )}
         </div>
 
-        {/* Go button */}
-        <button
-          onClick={handleGo}
-          disabled={!selected}
-          className="w-full flex items-center justify-center gap-2 py-4 rounded-full text-base font-semibold transition-all"
-          style={{
-            background: selected ? "oklch(0.64 0.17 42)" : "#DDD6CC",
-            color: selected ? "white" : "#8A8378",
-            cursor: selected ? "pointer" : "not-allowed",
-            boxShadow: selected ? "0 4px 20px oklch(0.64 0.17 42 / 0.2)" : "none",
-          }}
-        >
-          Acessar Plataforma
-          <ArrowRight className="w-5 h-5" />
-        </button>
+        {/* Divider */}
+        <div className="flex items-center gap-3 mb-6">
+          <div className="flex-1 h-px" style={{ background: "#EDE8E0" }} />
+          <span className="text-[10px] uppercase tracking-widest" style={{ color: "#B8B0A5" }}>ou</span>
+          <div className="flex-1 h-px" style={{ background: "#EDE8E0" }} />
+        </div>
 
-        {/* Help links */}
-        <div className="mt-8 text-center space-y-3">
-          <p className="text-xs" style={{ color: "#B8B0A5" }}>
-            Sua empresa ainda não tem acesso?
+        {/* Direct access */}
+        <div className="text-center space-y-4">
+          <p className="text-xs" style={{ color: "#8A8378" }}>
+            Acesse diretamente pelo endereço da sua empresa
           </p>
+          <div className="flex items-center rounded-xl border overflow-hidden transition-all focus-within:border-[oklch(0.64_0.17_42)] focus-within:shadow-[0_0_0_3px_oklch(0.64_0.17_42_/_0.08)]" style={{ borderColor: "#DDD6CC", background: "white" }}>
+            <input
+              type="text"
+              placeholder="nomedasuaempresa"
+              className="flex-1 px-4 py-3.5 text-sm outline-none text-left font-medium"
+              style={{ color: "#1A1714", background: "transparent" }}
+              onKeyDown={e => {
+                if (e.key === "Enter") {
+                  const val = (e.target as HTMLInputElement).value.trim().toLowerCase().replace(/[^a-z0-9-]/g, "");
+                  if (val) window.location.href = `https://${val}.eximiaacademy.com.br`;
+                }
+              }}
+            />
+            <span className="text-[11px] font-mono px-4 py-3.5 shrink-0" style={{ color: "#8A8378", background: "#F2EDE6" }}>
+              .eximiaacademy.com.br
+            </span>
+          </div>
+        </div>
+
+        {/* Help */}
+        <div className="mt-10 text-center">
+          <p className="text-[11px] mb-2" style={{ color: "#B8B0A5" }}>Ainda não tem acesso?</p>
           <Link
-            href="mailto:contato@eximiaventures.com.br?subject=Solicitar acesso eximIA Academy"
-            className="inline-flex items-center gap-1.5 text-sm font-medium"
+            href="/contato"
+            className="inline-flex items-center gap-1 text-xs font-medium"
             style={{ color: "oklch(0.64 0.17 42)" }}
           >
-            Solicitar demonstração <ArrowRight className="w-3.5 h-3.5" />
+            Solicitar demonstração <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
 
-        {/* Back to site */}
-        <div className="mt-12 text-center">
-          <Link href="/" className="text-xs underline" style={{ color: "#B8B0A5" }}>
-            Voltar ao site institucional
+        <div className="mt-8 text-center">
+          <Link href="/" className="text-[11px]" style={{ color: "#B8B0A5" }}>
+            ← Voltar ao site
           </Link>
         </div>
       </motion.div>

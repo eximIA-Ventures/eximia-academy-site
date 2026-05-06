@@ -285,7 +285,7 @@ export function ModulePage({ module: mod }: { module: Module }) {
               Agende uma demonstracao de 30 minutos. Trazemos exemplos reais do {mod.name} aplicado a universidades corporativas como a sua.
             </p>
             <a
-              href={`mailto:contato@eximiaventures.com.br?subject=Demo eximIA Academy - ${mod.name}`}
+              href={`/contato`}
               className="group inline-flex items-center gap-2.5 bg-primary text-page px-8 py-4 rounded-full text-base font-semibold hover:brightness-110 transition-all shadow-primary"
             >
               Solicitar Demonstracao

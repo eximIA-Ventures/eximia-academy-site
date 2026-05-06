@@ -318,11 +318,11 @@ export function CtaSection() {
           Seus concorrentes já estão usando IA para desenvolver times mais rápido, mais barato e com mais retenção. Agende uma demonstração de 30 minutos e veja o Socrático funcionando ao vivo com o conteúdo da sua empresa.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href="mailto:contato@eximiaventures.com.br?subject=Demo eximIA Academy" className="group flex items-center gap-2.5 bg-primary text-page px-8 py-4 rounded-full text-base font-semibold hover:brightness-110 transition-all shadow-[0_0_40px_oklch(0.72_0.18_45_/_0.15)]">
+          <a href="/contato" className="group flex items-center gap-2.5 bg-primary text-page px-8 py-4 rounded-full text-base font-semibold hover:brightness-110 transition-all shadow-[0_0_40px_oklch(0.72_0.18_45_/_0.15)]">
             Solicitar Demonstração
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
-          <a href="mailto:contato@eximiaventures.com.br?subject=Informações Academy" className="flex items-center gap-2 border border-neutral-300 text-body px-8 py-4 rounded-full text-base hover:border-primary hover:text-body transition-all">
+          <a href="/contato" className="flex items-center gap-2 border border-neutral-300 text-body px-8 py-4 rounded-full text-base hover:border-primary hover:text-body transition-all">
             Falar com Especialista
           </a>
         </div>
