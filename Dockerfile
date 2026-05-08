@@ -7,7 +7,8 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 FROM base AS deps
 WORKDIR /app
 COPY package.json pnpm-lock.yaml* ./
-RUN pnpm approve-builds sharp unrs-resolver 2>/dev/null; pnpm install --frozen-lockfile || pnpm install
+RUN pnpm config set ignore-build-errors true && pnpm install --frozen-lockfile --ignore-scripts || pnpm install --ignore-scripts
+RUN pnpm rebuild sharp 2>/dev/null || true
 
 # Build
 FROM base AS builder
