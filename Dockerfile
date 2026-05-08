@@ -6,9 +6,8 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 # Dependencies
 FROM base AS deps
 WORKDIR /app
-COPY package.json pnpm-lock.yaml* ./
-RUN pnpm config set ignore-build-errors true && pnpm install --frozen-lockfile --ignore-scripts || pnpm install --ignore-scripts
-RUN pnpm rebuild sharp 2>/dev/null || true
+COPY package.json pnpm-lock.yaml* .npmrc ./
+RUN pnpm install --frozen-lockfile --ignore-scripts || pnpm install --ignore-scripts
 
 # Build
 FROM base AS builder
