@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const jakarta = Plus_Jakarta_Sans({ variable: "--font-display", subsets: ["latin"] });
+const caveat = Caveat({ variable: "--font-caveat", subsets: ["latin"], weight: ["700"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://eximiaacademy.com.br"),
@@ -78,7 +79,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" dir="ltr" className={`${inter.variable} ${jakarta.variable}`}>
+    <html lang="pt-BR" dir="ltr" className={`${inter.variable} ${jakarta.variable} ${caveat.variable}`}>
       <head>
         {/* Organization Schema */}
         <script

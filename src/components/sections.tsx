@@ -340,7 +340,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2.5">
           <img src="/logo-horizontal.svg" alt="eximIA" className="h-5 " />
-          <span className="text-subtle text-[10px] font-mono uppercase tracking-widest">Academy</span>
+          <span className="text-[18px] font-bold leading-none" style={{ fontFamily: "var(--font-caveat), cursive", color: "oklch(0.64 0.17 42)" }}>Academy</span>
         </div>
         <div className="flex items-center gap-6 text-[11px] text-subtle">
           <a href="/privacidade" className="hover:text-muted transition-colors">Privacidade</a>
