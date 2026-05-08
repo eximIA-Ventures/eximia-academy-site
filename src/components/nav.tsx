@@ -39,9 +39,9 @@ export function Nav() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
-        <a href="/" className="flex items-center">
-          <img src="/logo-horizontal.svg" alt="eximIA" className="h-6" />
-          <span className="text-[20px] font-bold leading-none mb-[1px]" style={{ fontFamily: "var(--font-caveat), cursive", color: "oklch(0.64 0.17 42)" }}>Academy</span>
+        <a href="/" className="flex items-end gap-1.5">
+          <img src="/logo-horizontal.svg" alt="eximIA" className="h-7" />
+          <span className="text-[22px] font-bold leading-none mb-[1px]" style={{ fontFamily: "var(--font-caveat), cursive", color: "oklch(0.64 0.17 42)" }}>Academy</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8 text-sm text-muted">
