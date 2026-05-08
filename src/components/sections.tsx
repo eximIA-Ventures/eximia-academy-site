@@ -72,7 +72,7 @@ export function ProdutoSection() {
           <p className="text-primary text-[11px] uppercase tracking-[0.25em] font-mono mb-4">A Plataforma</p>
           <h2 className="font-display text-4xl md:text-5xl tracking-tight mb-5">
             Tudo que seu LMS prometeu{" "}
-            <span className="text-gradient-cerrado" style={{ fontFamily: "var(--font-caveat), cursive" }}>e nunca entregou.</span>
+            <span className="text-gradient-cerrado" >e nunca entregou.</span>
           </h2>
           <p className="text-muted text-lg font-light leading-relaxed">
             Plataformas tradicionais medem conclusão. A eximIA Academy mede compreensão. A diferença? Colaboradores que realmente mudam de comportamento. não apenas assistem vídeos até o final.
@@ -126,7 +126,7 @@ export function MetodoSection() {
         <motion.div {...fadeUp} className="text-center mb-20">
           <p className="text-primary text-[11px] uppercase tracking-[0.25em] font-mono mb-4">O Método Socrático com IA</p>
           <h2 className="font-display text-4xl md:text-5xl tracking-tight mb-5">
-            A IA pergunta.{" "}<span className="text-gradient-cerrado" style={{ fontFamily: "var(--font-caveat), cursive" }}>Seu time pensa de verdade.</span>
+            A IA pergunta.{" "}<span className="text-gradient-cerrado" >Seu time pensa de verdade.</span>
           </h2>
         </motion.div>
 
@@ -183,7 +183,7 @@ export function ModulosSection() {
         <motion.div {...fadeUp} className="text-center mb-16">
           <p className="text-primary text-[11px] uppercase tracking-[0.25em] font-mono mb-4">Arquitetura Modular</p>
           <h2 className="font-display text-4xl md:text-5xl tracking-tight mb-5">
-            Comece com 3 módulos.{" "}<span className="text-gradient-cerrado" style={{ fontFamily: "var(--font-caveat), cursive" }}>Escale para 9.</span>
+            Comece com 3 módulos.{" "}<span className="text-gradient-cerrado" >Escale para 9.</span>
           </h2>
           <p className="text-muted text-lg max-w-2xl mx-auto font-light">
             Sem pacote inflado que você paga e não usa. Ative o núcleo em dias. Adicione módulos conforme a maturidade da sua universidade corporativa. sem migrar de plataforma.
@@ -270,7 +270,7 @@ export function TestimonialsSection() {
         <motion.div {...fadeUp} className="text-center mb-16">
           <p className="text-primary text-[11px] uppercase tracking-[0.25em] font-mono mb-4">Resultados Reais</p>
           <h2 className="font-display text-4xl md:text-5xl tracking-tight">
-            Quem parou de treinar{" "}<span className="text-gradient-cerrado" style={{ fontFamily: "var(--font-caveat), cursive" }}>e começou a desenvolver.</span>
+            Quem parou de treinar{" "}<span className="text-gradient-cerrado" >e começou a desenvolver.</span>
           </h2>
         </motion.div>
 
@@ -312,7 +312,7 @@ export function CtaSection() {
       <motion.div {...fadeUp} className="relative max-w-3xl mx-auto px-6 lg:px-8 text-center">
         <h2 className="font-display text-4xl md:text-5xl tracking-tight mb-6">
           Cada dia sem a plataforma certa e{" "}
-          <span className="text-gradient-cerrado" style={{ fontFamily: "var(--font-caveat), cursive" }}>treinamento jogado fora.</span>
+          <span className="text-gradient-cerrado" >treinamento jogado fora.</span>
         </h2>
         <p className="text-muted text-lg mb-10 max-w-xl mx-auto font-light leading-relaxed">
           Seus concorrentes já estão usando IA para desenvolver times mais rápido, mais barato e com mais retenção. Agende uma demonstração de 30 minutos e veja o Socrático funcionando ao vivo com o conteúdo da sua empresa.

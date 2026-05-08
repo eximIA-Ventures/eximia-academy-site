@@ -45,7 +45,7 @@ export function Hero() {
               Treinamento que
               <br />
               seu time realmente{" "}
-              <span className="text-gradient-cerrado" style={{ fontFamily: "var(--font-caveat), cursive" }}>
+              <span className="text-gradient-cerrado">
                 absorve, aplica
                 <br />
                 e não esquece.
