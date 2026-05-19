@@ -6,7 +6,6 @@ import { Search, ArrowRight, LogIn } from "lucide-react";
 import Link from "next/link";
 
 const tenants = [
-  { slug: "cory", name: "Cory Alimentos" },
   { slug: "argos", name: "Argos Consultoria" },
 ];
 

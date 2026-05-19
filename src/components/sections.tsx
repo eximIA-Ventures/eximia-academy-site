@@ -24,7 +24,6 @@ const stagger = (i: number) => ({
    ═══════════════════════════════════════════════════════════ */
 export function LogoBar() {
   const logos = [
-    { name: "Cory Alimentos", src: "/logos/cory.svg", h: "h-6" },
     { name: "Harven Agribusiness", src: "/logos/harven.png", h: "h-7" },
     { name: "Argos Consultoria", src: "/logos/argos.png", h: "h-6" },
     { name: "eximIA Ventures", src: "/logo-horizontal.svg", h: "h-5" },
