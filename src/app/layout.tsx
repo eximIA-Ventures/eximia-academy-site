@@ -1,154 +1,118 @@
-import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans, Caveat } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import {
+  Bricolage_Grotesque,
+  Geist_Mono,
+  Instrument_Sans,
+} from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@/components/analytics/Analytics";
+import {
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+} from "@/lib/site";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
-const jakarta = Plus_Jakarta_Sans({ variable: "--font-display", subsets: ["latin"] });
-const caveat = Caveat({ variable: "--font-caveat", subsets: ["latin"], weight: ["700"] });
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  weight: "variable",
+  axes: ["opsz"],
+  display: "swap",
+  fallback: ["Avenir Next", "Helvetica Neue", "system-ui"],
+});
+
+const instrument = Instrument_Sans({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "variable",
+  display: "swap",
+  fallback: ["SF Pro Text", "system-ui"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  weight: "variable",
+  display: "swap",
+  fallback: ["JetBrains Mono", "SF Mono", "ui-monospace"],
+});
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#140d07" },
+    { media: "(prefers-color-scheme: light)", color: "#faf9f7" },
+  ],
+};
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://eximiaacademy.com.br"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "eximIA Academy — Educação Corporativa com IA Socrática",
-    template: "%s — eximIA Academy",
+    default: `${SITE_NAME} · ${SITE_TAGLINE}`,
+    template: `%s · ${SITE_NAME}`,
   },
-  description: "Plataforma LXP com IA Socrática. Trilhas adaptativas, reflexões guiadas e gestão de competências para universidades corporativas.",
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
-    "educação corporativa", "IA socrática", "LXP", "universidade corporativa",
-    "treinamento corporativo", "eximIA", "aprendizado adaptativo", "T&D",
-    "plataforma de ensino", "educação empresarial", "treinamento com IA",
-    "gestão de competências", "micro-learning", "heutagogia",
-    "Ribeirão Preto", "São Paulo", "Brasil",
+    "exímIA Academy",
+    "escola AI First",
+    "capacidade organizacional",
+    "Human Capability Index",
+    "aprendizagem aplicada",
   ],
-  authors: [{ name: "eximIA Ventures" }],
-  creator: "eximIA Ventures",
-  publisher: "eximIA Ventures",
-  category: "Education Technology",
-  classification: "Business/Education",
-  openGraph: {
-    type: "website",
-    locale: "pt_BR",
-    url: "https://eximiaacademy.com.br",
-    siteName: "eximIA Academy",
-    title: "eximIA Academy — Educação Corporativa com IA Socrática",
-    description: "A única plataforma onde a IA faz as perguntas e o colaborador constrói o conhecimento. Retenção real, mensurável.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "eximIA Academy — Educação Corporativa com IA" }],
-    countryName: "Brazil",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "eximIA Academy — Educação Corporativa com IA",
-    description: "Método Socrático com IA. Seu time aprende de verdade.",
-    images: ["/og-image.png"],
-    creator: "@eximia_ia",
+  authors: [{ name: "exímIA" }],
+  alternates: {
+    canonical: "/",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    googleBot: { index: true, follow: true },
   },
-  alternates: {
-    canonical: "https://eximiaacademy.com.br",
-    languages: { "pt-BR": "https://eximiaacademy.com.br" },
-  },
+  // Conjunto herdado do site anterior. Sem o `apple-touch-icon`, a página
+  // salva na tela de início de um iPhone vira uma miniatura genérica.
   manifest: "/manifest.json",
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
       { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
-  verification: {
-    // google: "seu-codigo-google-search-console",
+  openGraph: {
+    title: `${SITE_NAME} · ${SITE_TAGLINE}`,
+    description:
+      "A escola AI First de capacidades humanas: aprendizagem que vira evidência aplicada no trabalho, medida pelo HCI.",
+    url: "/",
+    locale: "pt_BR",
+    siteName: SITE_NAME,
+    type: "website",
   },
-  other: {
-    "geo.region": "BR-SP",
-    "geo.placename": "Ribeirão Preto",
-    "geo.position": "-21.1767;-47.8208",
-    "ICBM": "-21.1767, -47.8208",
-    "content-language": "pt-BR",
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} · ${SITE_TAGLINE}`,
+    description:
+      "A escola AI First de capacidades humanas: aprendizagem que vira evidência aplicada no trabalho, medida pelo HCI.",
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="pt-BR" dir="ltr" className={`${inter.variable} ${jakarta.variable} ${caveat.variable}`}>
-      <head>
-        {/* Organization Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "EducationalOrganization",
-              name: "eximIA Academy",
-              url: "https://eximiaacademy.com.br",
-              logo: "https://eximiaacademy.com.br/logo-horizontal.svg",
-              description: "Plataforma de educação corporativa com IA Socrática. Método que transforma treinamento em retenção real.",
-              foundingDate: "2026",
-              areaServed: { "@type": "Country", name: "Brazil" },
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Ribeirão Preto",
-                addressRegion: "SP",
-                addressCountry: "BR",
-              },
-              parentOrganization: {
-                "@type": "Organization",
-                name: "eximIA Ventures",
-                url: "https://eximiaventures.com.br",
-              },
-              sameAs: [
-                "https://www.linkedin.com/company/exim-ia/",
-                "https://www.instagram.com/eximia.ia",
-              ],
-              offers: {
-                "@type": "Offer",
-                category: "Educação Corporativa",
-                areaServed: "BR",
-                availableLanguage: "pt-BR",
-              },
-            }),
-          }}
-        />
-        {/* SoftwareApplication Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              name: "eximIA Academy",
-              applicationCategory: "EducationalApplication",
-              operatingSystem: "Web",
-              description: "Plataforma LXP com IA Socrática para universidades corporativas",
-              url: "https://eximiaacademy.com.br",
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "BRL",
-                description: "Demonstração gratuita disponível",
-              },
-              featureList: [
-                "IA Socrática com 7 camadas de profundidade",
-                "Trilhas de aprendizado adaptativas",
-                "Course Designer com IA",
-                "Analytics por aluno e competência",
-                "9 módulos (3 core + 6 add-on)",
-                "Multi-tenant com isolamento de dados",
-              ],
-            }),
-          }}
-        />
-      </head>
-      <body className="min-h-screen antialiased">{children}</body>
+    <html lang="pt-BR">
+      <body
+        className={`${bricolage.variable} ${instrument.variable} ${geistMono.variable} bg-paper font-sans text-ink antialiased`}
+      >
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
+

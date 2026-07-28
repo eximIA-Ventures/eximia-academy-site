@@ -1,117 +1,163 @@
 @import "tailwindcss";
 
-/* ============================================================
-   eximIA Academy — Light Mode Only · Cerrado (Laranja)
-   ============================================================ */
+:root {
+  /* Rampa Brasa */
+  --brasa-50: #fff4ee;
+  --brasa-100: #ffe6d8;
+  --brasa-200: #ffcdb0;
+  --brasa-300: #ffab7e;
+  --brasa-400: #ff8a50;
+  --brasa-500: #ff6b2c;
+  --brasa-600: #f0540f;
+  --brasa-700: #c84208;
+  --brasa-800: #a0370c;
+  --brasa-900: #7e2e0e;
+  --brasa-950: #451605;
 
-@theme {
-  --color-cerrado:   oklch(0.72 0.18 45);
-  --color-pampa:     oklch(0.55 0.14 150);
-  --color-sertao:    oklch(0.65 0.16 30);
-  --color-pantanal:  oklch(0.45 0.12 220);
-  --color-varzea:    oklch(0.78 0.10 168);
-  --color-caatinga:  oklch(0.82 0.08 80);
+  /* Neutros quentes */
+  --paper: #faf9f7;
+  --paper-alt: #f4f1ec;
+  --ink: #1c1917;
+  --ink-soft: #57534e;
+  --line: #e7e2da;
+  --night: #140d07;
+  --night-2: #1f1209;
+  --cream: #f5ede6;
+  --mist: #b8afa6;
 
-  --color-neutral-50:  oklch(0.98 0 0);
-  --color-neutral-100: oklch(0.96 0 0);
-  --color-neutral-200: oklch(0.93 0 0);
-  --color-neutral-300: oklch(0.87 0 0);
-  --color-neutral-400: oklch(0.80 0 0);
-  --color-neutral-500: oklch(0.72 0 0);
-  --color-neutral-600: oklch(0.58 0 0);
-  --color-neutral-700: oklch(0.44 0 0);
-  --color-neutral-800: oklch(0.31 0 0);
-  --color-neutral-900: oklch(0.24 0 0);
-  --color-neutral-950: oklch(0.17 0 0);
+  /* Geometria e profundidade */
+  --content-width: 70rem;
+  --page-gutter: 1.5rem;
+  --section-space: 6rem;
+  --section-space-mobile: 4rem;
+  --radius-card-token: 1rem;
+  --radius-button-token: 0.625rem;
+  --radius-chip-token: 999px;
+  --shadow-cta-token: 0 8px 24px -8px rgb(255 107 44 / 50%);
 
-  --color-success: oklch(0.62 0.18 148);
-  --color-warning: oklch(0.80 0.16 80);
-  --color-error:   oklch(0.58 0.22 25);
-  --color-info:    oklch(0.62 0.16 240);
-
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-display: var(--font-display), system-ui, sans-serif;
+  /* Motion */
+  --duration-reveal: 700ms;
+  --duration-hover: 240ms;
+  --duration-breathe: 9s;
+  --duration-breathe-slow: 12s;
+  --ease-out-soft-token: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-distance: 24px;
+  --reveal-stagger: 70ms;
+  --parallax-cap: 48px;
 }
 
-@layer base {
-  :root {
-    color-scheme: light;
-    --bg:          0.97 0.005 60;
-    --fg:          0.15 0.006 30;
-    --card-bg:     1 0 0;
-    --muted-fg:    0.50 0 0;
-    --subtle-fg:   0.65 0 0;
-    --border-raw:  0.87 0.01 50;
-    --primary-raw: 0.64 0.17 42;
-    --primary-fg:  0.98 0 0;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background-color: #F7F4EF;
-    color: #1A1714;
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    line-height: 1.15;
-    font-weight: 600;
-  }
-
-  ::selection { background: oklch(var(--primary-raw) / 0.2); }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: oklch(var(--border-raw) / 0.5); border-radius: 9999px; }
+@theme inline {
+  --color-brasa-50: var(--brasa-50);
+  --color-brasa-100: var(--brasa-100);
+  --color-brasa-200: var(--brasa-200);
+  --color-brasa-300: var(--brasa-300);
+  --color-brasa-400: var(--brasa-400);
+  --color-brasa-500: var(--brasa-500);
+  --color-brasa-600: var(--brasa-600);
+  --color-brasa-700: var(--brasa-700);
+  --color-brasa-800: var(--brasa-800);
+  --color-brasa-900: var(--brasa-900);
+  --color-brasa-950: var(--brasa-950);
+  --color-paper: var(--paper);
+  --color-paper-alt: var(--paper-alt);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-night: var(--night);
+  --color-night-2: var(--night-2);
+  --color-cream: var(--cream);
+  --color-mist: var(--mist);
+  --font-display: var(--font-bricolage), "Avenir Next", "Helvetica Neue", system-ui, sans-serif;
+  --font-sans: var(--font-instrument), "SF Pro Text", system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+  --radius-card: var(--radius-card-token);
+  --radius-button: var(--radius-button-token);
+  --radius-chip: var(--radius-chip-token);
+  --shadow-cta: var(--shadow-cta-token);
+  --ease-out-soft: var(--ease-out-soft-token);
+  --container-content: var(--content-width);
 }
 
-@layer utilities {
-  .bg-page { background-color: oklch(var(--bg)); }
-  .text-page { color: oklch(var(--bg)); }
-  .bg-card { background-color: oklch(var(--card-bg)); }
-  .text-body { color: oklch(var(--fg)); }
-  .text-muted { color: oklch(var(--muted-fg)); }
-  .text-subtle { color: oklch(var(--subtle-fg)); }
-  .border-line { border-color: oklch(var(--border-raw) / 0.15); }
+* {
+  box-sizing: border-box;
+}
 
-  .glass {
-    background: oklch(var(--card-bg) / 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid oklch(var(--border-raw) / 0.3);
+html {
+  background: var(--paper);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--brasa-200);
+  color: var(--ink);
+}
+
+/*
+ * T8 (polimento cinematográfico): estado de foco visível e consistente
+ * para navegação por teclado, na cor da marca (Brasa) em vez do azul
+ * default do navegador, que destoava sobre `night` e sobre os CTAs
+ * `brasa-500`. `:focus-visible` só acende no teclado, nunca no clique
+ * do mouse, então não interfere no motion/hover já existentes.
+ *
+ * Achado de contraste (T9): `brasa-500` sozinho dava 2,7:1 sobre `paper`,
+ * abaixo do 3:1 exigido para indicador de foco. Ring duplo: `brasa-700`
+ * (4,71:1 sobre paper, 3,89:1 sobre night) como anel interno, mais um
+ * halo `cream` como anel externo para reforçar a leitura sobre fundos
+ * escuros e sobre o próprio CTA `brasa-500`.
+ */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--brasa-700);
+  outline-offset: 3px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 5px var(--cream);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(245 237 230 / 3.5%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(245 237 230 / 3.5%) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 90% 75% at 50% 25%, black 30%, transparent 76%);
+  pointer-events: none;
+}
+
+.hero-glow {
+  width: min(42rem, 80vw);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgb(255 107 44 / 34%) 0%, rgb(240 84 15 / 9%) 52%, transparent 74%);
+  filter: blur(80px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  .text-primary { color: oklch(var(--primary-raw)); }
-  .bg-primary { background-color: oklch(var(--primary-raw)); }
-  .border-primary { border-color: oklch(var(--primary-raw)); }
-  .bg-primary-subtle { background-color: oklch(var(--primary-raw) / 0.1); }
-  .border-primary-subtle { border-color: oklch(var(--primary-raw) / 0.2); }
-  .text-primary-subtle { color: oklch(var(--primary-raw) / 0.2); }
-  .shadow-primary { box-shadow: 0 4px 20px oklch(var(--primary-raw) / 0.15); }
-
-  .text-gradient-cerrado { color: oklch(var(--primary-raw)); }
-
-  .surface-card {
-    background-color: oklch(var(--card-bg));
-    border: 1px solid oklch(var(--border-raw) / 0.2);
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
   }
 
-  .interactive { transition: all 150ms ease-out; }
-  .interactive:hover { transform: translateY(-1px); }
-
-  .logo-company {
-    filter: grayscale(1);
-    opacity: 0.5;
-    transition: all 0.3s ease;
-  }
-  .logo-company:hover {
-    filter: grayscale(0);
-    opacity: 0.8;
+  [data-reveal],
+  [data-parallax],
+  [data-breathe] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
+

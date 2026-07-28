@@ -1,4 +1,12 @@
 node_modules
 .next
-.env*
+out
+coverage
 *.log
+*.tsbuildinfo
+.DS_Store
+
+# Segredos nunca entram no repositório. O exemplo, sim, porque é ele que
+# documenta quais variáveis o deploy precisa.
+.env*
+!.env.example

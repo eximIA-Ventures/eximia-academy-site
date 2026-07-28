@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# exímIA Academy · site institucional
 
-## Getting Started
+Landing "A Virada": scrollytelling de capítulo único que apresenta a exímIA
+Academy como escola AI First de capacidades humanas, mais a porta de acesso
+às academias por tenant.
 
-First, run the development server:
+## Stack
+
+Next.js 15.5 (App Router), Tailwind CSS 4, TypeScript, pnpm. Animação com
+`motion`, encapsulada em `src/components/motion/` e sensível a
+`prefers-reduced-motion`.
+
+## Rodar localmente
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Portões
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Os quatro devem passar antes de qualquer PR:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm typecheck
+pnpm lint
+pnpm test
+pnpm build
+```
 
-## Learn More
+## Rotas
 
-To learn more about Next.js, take a look at the following resources:
+| Rota | O que é |
+|:---|:---|
+| `/` | Landing completa, capítulos 01 a 08 mais a seção de contato (`#contato`) |
+| `/login` | Acesso às academias por tenant, redireciona para `{slug}.eximiaacademy.com.br` |
+| `/privacidade`, `/termos` | Páginas legais |
+| `/api/contato` | Recebe o lead e encaminha ao destino configurado |
+| `/opengraph-image` | Card social gerado na build |
+| `/robots.txt`, `/sitemap.xml` | Descoberta |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Redirects de preservação do site anterior: `/contato` e `/modulos/*` apontam
+para as seções equivalentes da landing. Estão em `next.config.ts` e não devem
+ser removidos sem antes verificar indexação, porque essas URLs foram
+publicadas e indexadas.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Variáveis de ambiente
 
-## Deploy on Vercel
+Ver `.env.example`. Nenhuma é obrigatória para o site subir, e cada ausência
+degrada de forma explícita, nunca em falso sucesso.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Variável | Efeito se ausente |
+|:---|:---|
+| `NEXT_PUBLIC_SITE_URL` | Metadata, canonical e sitemap caem na URL de preview |
+| `CONTACT_ENDPOINT` | Formulário assume o canal direto por email, sem fingir envio |
+| `NEXT_PUBLIC_POSTHOG_KEY` | Medição desligada, sem baixar o vendor |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+As `NEXT_PUBLIC_*` são embutidas no bundle **no momento do build** e existem
+como `ARG` no Dockerfile. `CONTACT_ENDPOINT` é lida por requisição, então muda
+no serviço sem rebuild.
+
+## Deploy
+
+Imagem Docker multi-stage com `output: "standalone"`, servindo em `:3000` via
+`node server.js`.
+
+```bash
+docker build -t eximia-academy-site .
+docker run -p 3000:3000 -e CONTACT_ENDPOINT=... eximia-academy-site
+```

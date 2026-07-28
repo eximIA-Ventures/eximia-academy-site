@@ -1,20 +1,27 @@
 import type { MetadataRoute } from "next";
-import { modules } from "@/lib/modules";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://eximiaacademy.com.br";
+  const lastModified = new Date("2026-07-28");
 
   return [
-    { url: base, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-    { url: `${base}/contato`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${base}/login`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    ...modules.map((mod) => ({
-      url: `${base}/modulos/${mod.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    { url: `${base}/privacidade`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${base}/termos`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+    {
+      url: `${SITE_URL}/`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+    {
+      url: `${SITE_URL}/privacidade`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${SITE_URL}/termos`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 }

@@ -1,0 +1,23 @@
+/* Coluna "Depois" da tabela Antes/Depois: fundo levemente aquecido (DIRECTION.md secao 6).
+   Gradiente de brasa-50 (#FFF4EE) para paper (#FAF9F7), itens com peso 500. */
+
+.col-depois {
+  background: linear-gradient(180deg, #FFF4EE 0%, #FAF9F7 100%);
+  border: 1px solid #E7E2DA; /* line */
+  border-radius: 16px;
+}
+
+.col-depois .item {
+  font-weight: 500;
+  color: #1C1917; /* ink */
+}
+
+/* Acento de texto sobre claro: sempre brasa-700 (AA 4,71:1). */
+.col-depois .label {
+  color: #C84208;
+}
+
+/* Variante de camada aquecida mais ampla, para blocos de secao inteiros. */
+.secao-aquecida {
+  background: linear-gradient(180deg, #FFF4EE 0%, #FAF9F7 55%, #F4F1EC 100%);
+}

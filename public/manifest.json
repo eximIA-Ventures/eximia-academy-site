@@ -1,11 +1,11 @@
 {
-  "name": "eximIA Academy",
+  "name": "exímIA Academy",
   "short_name": "Academy",
-  "description": "Plataforma de educação corporativa com IA Socrática",
+  "description": "Escola AI First de capacidades humanas para execução",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F7F4EF",
-  "theme_color": "#E8A94B",
+  "background_color": "#faf9f7",
+  "theme_color": "#faf9f7",
   "lang": "pt-BR",
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
