@@ -19,9 +19,15 @@ COPY . .
 
 # Variáveis públicas são embutidas no bundle no momento do build, então
 # precisam existir AQUI, não só no runtime do contêiner.
-ARG NEXT_PUBLIC_SITE_URL
-ARG NEXT_PUBLIC_POSTHOG_KEY
-ARG NEXT_PUBLIC_POSTHOG_HOST
+#
+# `ARG` sem default vira ENV com STRING VAZIA quando o build arg não é
+# passado, não `undefined`. Isso já derrubou um build: a origem vazia
+# chegava ao `metadataBase` e o `new URL("")` quebrava a coleta de página.
+# Por isso o default do domínio canônico fica aqui também, além da guarda
+# em `src/lib/site.ts`. Duas travas, porque a falha é silenciosa até estourar.
+ARG NEXT_PUBLIC_SITE_URL=https://eximiaacademy.com.br
+ARG NEXT_PUBLIC_POSTHOG_KEY=
+ARG NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 ENV NEXT_PUBLIC_POSTHOG_KEY=$NEXT_PUBLIC_POSTHOG_KEY
 ENV NEXT_PUBLIC_POSTHOG_HOST=$NEXT_PUBLIC_POSTHOG_HOST

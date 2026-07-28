@@ -8,10 +8,16 @@
  * é baixado e `track()` é no-op absoluto.
  */
 
-export const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY ?? "";
+export const POSTHOG_KEY = (process.env.NEXT_PUBLIC_POSTHOG_KEY ?? "").trim();
 
+/**
+ * `?.trim() ||` e não `??`: variável de build vazia é STRING VAZIA, não
+ * `undefined`, e `??` a deixaria passar. Um `api_host: ""` só quebraria em
+ * produção, e apenas com a medição ligada, que é o pior tipo de falha.
+ * Mesma classe do bug que derrubou o build em `site.ts`.
+ */
 export const POSTHOG_HOST =
-  process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com";
+  process.env.NEXT_PUBLIC_POSTHOG_HOST?.trim() || "https://us.i.posthog.com";
 
 export const analyticsEnabled = POSTHOG_KEY.length > 0;
 
