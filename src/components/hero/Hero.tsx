@@ -49,11 +49,18 @@ export function Hero() {
           </p>
         </Reveal>
 
-        <Reveal stagger={1} className="mt-7 w-full min-w-0 max-w-5xl">
-          <h1 className="font-display text-[clamp(3rem,9vw,7rem)] leading-[1.0] font-bold tracking-[-0.035em]">
+        {/*
+          Escala calibrada para "Capacidade permanece." caber em UMA linha.
+          A frase é um par de dois tempos, "Treinamento termina." e
+          "Capacidade permanece."; se a segunda quebrar no meio, o paralelo
+          se perde e a headline vira três linhas soltas. Verificado em
+          1440, 834 e 390 px de largura.
+        */}
+        <Reveal stagger={1} className="mt-7 w-full min-w-0 max-w-6xl">
+          <h1 className="font-display text-[clamp(2.625rem,7.6vw,6.25rem)] leading-[1.0] font-bold tracking-[-0.035em]">
             Treinamento termina.
             <br />
-            <span className="text-brasa-600">Capacidade</span> fica.
+            <span className="text-brasa-600">Capacidade</span> permanece.
           </h1>
         </Reveal>
 

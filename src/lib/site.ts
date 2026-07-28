@@ -14,7 +14,7 @@ export const SITE_URL = (
 
 export const SITE_NAME = "exímIA Academy";
 
-export const SITE_TAGLINE = "Treinamento termina. Capacidade fica.";
+export const SITE_TAGLINE = "Treinamento termina. Capacidade permanece.";
 
 export const SITE_DESCRIPTION =
   "A exímIA Academy não é um LMS nem uma LXP. É a escola AI First que transforma aprendizagem em capacidade organizacional mensurável, com evidência real de aplicação no trabalho.";

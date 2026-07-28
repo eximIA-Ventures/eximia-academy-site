@@ -10,7 +10,7 @@ import { ImageResponse } from "next/og";
  * falha de rede no momento da build.
  */
 export const alt =
-  "exímIA Academy · Treinamento termina. Capacidade fica. Escola AI First de capacidades humanas.";
+  "exímIA Academy · Treinamento termina. Capacidade permanece. Escola AI First de capacidades humanas.";
 
 export const size = { width: 1200, height: 630 };
 
@@ -81,7 +81,7 @@ export default function OpengraphImage() {
             }}
           >
             <span>Treinamento termina.</span>
-            <span style={{ color: "#ff8a50" }}>Capacidade fica.</span>
+            <span style={{ color: "#ff8a50" }}>Capacidade permanece.</span>
           </div>
           <div
             style={{
